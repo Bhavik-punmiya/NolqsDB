@@ -10,14 +10,14 @@ TEST_CASE("Store and Retrive Value from Database","[setKeyValue, getKeyValue]") 
 
     SECTION("Store and Retrieve") {
         std::string dbname("mydb");
-        Database db(GroundUpDB::createEmptyDB(dbname));
+        std::unique_ptr<groundupdb::IDatabase> db(groundupdb::GroundUpDB::createEmptyDB(dbname));
 
         std::string key("mykey");
         std::string value("Some Highly Valueable Value");
 
-        db.setKeyValue(key, value); 
-        REQUIRE(value == db.getKeyValue(key));
-        db.destroy();
+        db->setKeyValue(key, value); 
+        REQUIRE(value == db->getKeyValue(key));
+        db->destroy();
         
     }
 }

@@ -6,25 +6,20 @@ target_link_libraries(groundupdb-cli PRIVATE groundupdb)
 
 # Include directories for headers
 target_include_directories(groundupdb-cli PRIVATE 
-    ${CMAKE_SOURCE_DIR}/groundupdb/Headers
+    ${CMAKE_SOURCE_DIR}/groundupdb/include
     ${CMAKE_SOURCE_DIR}/groundupdb-cli/Headers
-    ${CMAKE_SOURCE_DIR}/external/cxxopts/include  # Add this line
+    ${CMAKE_SOURCE_DIR}/external/cxxopts/include  # If using external dependencies
 )
 
-# Add the new header file explicitly for clarity (optional)
-target_sources(groundupdb-cli PRIVATE 
-    ${CMAKE_SOURCE_DIR}/groundupdb-cli/Headers/cxxopts.hpp
-)
-
-# Ensure the executable builds after the library
+# Ensure CLI builds after the library
 add_dependencies(groundupdb-cli groundupdb)
 
 # Use C++17 for this target
 set_target_properties(groundupdb-cli PROPERTIES CXX_STANDARD 17)
 
-# Set compile options based on the compiler
+# Set compiler options
 if(MSVC)
-    target_compile_options(groundupdb-cli PRIVATE /W4)  # Use MSVC warning level 4
+    target_compile_options(groundupdb-cli PRIVATE /W4)  
 else()
-    target_compile_options(groundupdb-cli PRIVATE -Wall -Wextra -pedantic)  # Use GCC/Clang flags
+    target_compile_options(groundupdb-cli PRIVATE -Wall -Wextra -pedantic)  
 endif()
