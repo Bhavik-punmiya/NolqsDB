@@ -14,7 +14,7 @@ add_library(groundupdb STATIC
 
 target_include_directories(groundupdb PUBLIC
     ${CMAKE_SOURCE_DIR}/Headers/include
-    ${CMAKE_SOURCE_DIR}/Headers/include/extensions
+    ${CMAKE_SOURCE_DIR}/Headers/include/extens
 )
 
 if(MSVC)
