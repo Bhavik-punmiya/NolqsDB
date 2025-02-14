@@ -11,6 +11,7 @@ target_link_libraries(groundupdb-tests PRIVATE groundupdb)
 target_include_directories(groundupdb-tests PRIVATE 
     ${CMAKE_SOURCE_DIR}/groundupdb/include
     ${CMAKE_SOURCE_DIR}/groundupdb-tests/Sources
+    Headers/
 )
 
 # Ensure tests build after the library

@@ -1,0 +1,6 @@
+[submodule "groundupdb/external/highwayhash"]
+	path = groundupdb/external/highwayhash
+	url = https://github.com/google/highwayhash.git
+[submodule "groundupdb/highwayhash"]
+	path = groundupdb/highwayhash
+	url = https://github.com/google/highwayhash.git

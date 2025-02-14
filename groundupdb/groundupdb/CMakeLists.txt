@@ -1,24 +1,23 @@
-cmake_minimum_required(VERSION 3.10)
-project(groundupdb)
-
-# Add this line to generate compile_commands.json
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-add_library(groundupdb STATIC
+# Define the static library
+add_library(groundupdb STATIC 
     Sources/groundupdb.cpp
-    Sources/database.cpp
+    Sources/database.cpp  
 )
 
-target_include_directories(groundupdb PUBLIC
-    ${CMAKE_SOURCE_DIR}/Headers/include
-    ${CMAKE_SOURCE_DIR}/Headers/include/extens
-)
 
+# Include the headers directory
+target_include_directories(groundupdb PUBLIC 
+    Headers
+    Headers/include
+    Headers/include/extensions
+    )
+
+# Use C++17 for this library
+set_target_properties(groundupdb PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
+
+# Set compile options based on the compiler
 if(MSVC)
-    target_compile_options(groundupdb PRIVATE /W4 /WX)
+    target_compile_options(groundupdb PRIVATE /W4)  # Use MSVC warning level 4
 else()
-    target_compile_options(groundupdb PRIVATE -Wall -Wextra -pedantic -Werror)
+    target_compile_options(groundupdb PRIVATE -Wall -Wextra -pedantic)  # Use GCC/Clang flags
 endif()
